@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVR Integration or Service Poll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .survey-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .instruction {
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .btn-container {
+            text-align: center;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-no {
+            background-color: #dc3545;
+        }
+        .btn-no:hover {
+            background-color: #c82333;
+        }
+        .support-info {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="survey-container">
+        <h2>IVR Integration or Service Poll</h2>
+        
+        <p class="instruction">We would like to know your preferences regarding IVR (Interactive Voice Response) systems and our CRM integration. Please take a moment to answer the following questions:</p>
+        
+        <form id="ivrSurveyForm">
+            <!-- First Question (Interested in IVR System) -->
+            <div class="question" id="ivrUsageQuestion">
+                <label>1. Are you interested in using an IVR system?</label><br>
+                <div class="btn-container">
+                    <button type="button" class="btn" onclick="selectAnswer('ivrUsage', 'yes')">Yes</button>
+                    <button type="button" class="btn btn-no" onclick="selectAnswer('ivrUsage', 'no')">No</button>
+                </div>
+            </div>
+
+            <!-- Second Question (Are you using an IVR or interested in our service) -->
+            <div class="question" id="ivrServiceQuestion" style="display: none;">
+                <label>2. If Yes, are you already using an IVR system? If No, we provide IVR services in our CRM for you. Would you be interested in using it?</label><br>
+                <div class="btn-container">
+                    <button type="button" class="btn" onclick="selectAnswer('ivrService', 'yes')">Yes, I am already using an IVR system</button>
+                    <button type="button" class="btn btn-no" onclick="selectAnswer('ivrService', 'no')">No, but I am interested in your IVR service</button>
+                </div>
+            </div>
+
+            <!-- Third Question (Integration with CRM if using IVR) -->
+            <div class="question" id="ivrIntegrationQuestion" style="display: none;">
+                <label>3. If Yes (already using the IVR), are you willing to integrate your existing IVR system with our CRM?</label><br>
+                <div class="btn-container">
+                    <button type="button" class="btn" onclick="selectAnswer('ivrIntegration', 'yes')">Yes, I would like to integrate my IVR with your CRM</button>
+                    <button type="button" class="btn btn-no" onclick="selectAnswer('ivrIntegration', 'no')">No, I am not interested in integrating</button>
+                </div>
+            </div>
+            
+        </form>
+
+        <div class="support-info">
+            <p>If you have any questions or need assistance, please contact our support team at <strong>7292090360</strong>.</p>
+        </div>
+
+        <div class="footer">
+            <p>Thank you for participating in our poll!</p>
+        </div>
+    </div>
+
+    <script>
+        function selectAnswer(question, answer) {
+            console.log(question + ": " + answer);
+
+            // Handle the display logic based on answers
+            if (question === 'ivrUsage' && answer === 'yes') {
+                document.getElementById('ivrServiceQuestion').style.display = 'block';
+                document.getElementById('ivrUsageQuestion').style.display = 'none';
+            } else if (question === 'ivrUsage' && answer === 'no') {
+                document.getElementById('ivrServiceQuestion').style.display = 'block';
+                document.getElementById('ivrUsageQuestion').style.display = 'none';
+            } else if (question === 'ivrService' && answer === 'yes') {
+                document.getElementById('ivrIntegrationQuestion').style.display = 'block';
+                document.getElementById('ivrServiceQuestion').style.display = 'none';
+            } else if (question === 'ivrService' && answer === 'no') {
+                document.getElementById('ivrIntegrationQuestion').style.display = 'none';
+                document.getElementById('ivrServiceQuestion').style.display = 'none';
+            } else if (question === 'ivrIntegration' && answer === 'no') {
+                document.getElementById('ivrIntegrationQuestion').style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
